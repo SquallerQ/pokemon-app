@@ -4,7 +4,7 @@ import styles from './Spinner.module.css';
 class Spinner extends Component {
   render(): JSX.Element {
     return (
-      <div className={styles.spinnerContainer}>
+      <div className={styles.spinnerContainer} role="status">
         <div className={styles.spinner}></div>
       </div>
     );
