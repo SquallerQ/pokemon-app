@@ -1,60 +1,52 @@
-import React, { Component, JSX } from 'react';
+import React, { JSX } from 'react';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import styles from './Search.module.css';
 
 interface SearchProps {
   onSearch: (term: string) => void;
 }
 
-interface SearchState {
-  inputValue: string;
-}
+function Search({ onSearch }: SearchProps): JSX.Element {
+  const [inputValue, setInputValue] = useLocalStorage('searchTerm', '');
 
-class Search extends Component<SearchProps, SearchState> {
-  state: SearchState = {
-    inputValue: localStorage.getItem('searchTerm') || '',
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
   };
 
-  handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ inputValue: event.target.value });
+  const handleSearch = () => {
+    const searchTerm = inputValue.trim();
+    setInputValue(searchTerm);
+    onSearch(searchTerm);
   };
 
-  handleSearch = (): void => {
-    const searchTerm = this.state.inputValue.trim();
-    localStorage.setItem('searchTerm', searchTerm);
-    this.props.onSearch(searchTerm);
+  const handleReset = () => {
+    setInputValue('');
+    onSearch('');
   };
 
-  handleReset = (): void => {
-    this.setState({ inputValue: '' });
-    localStorage.removeItem('searchTerm');
-    this.props.onSearch('');
-  };
-
-  render(): JSX.Element {
-    return (
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-          className={styles.input}
-          placeholder="Search Pokémon..."
-        />
-        {this.state.inputValue && (
-          <button
-            onClick={this.handleReset}
-            className={styles.resetButton}
-            title="Reset search"
-          >
-            ✕
-          </button>
-        )}
-        <button onClick={this.handleSearch} className={styles.button}>
-          Search
+  return (
+    <div className={styles.searchContainer}>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        className={styles.input}
+        placeholder="Search Pokémon..."
+      />
+      {inputValue && (
+        <button
+          onClick={handleReset}
+          className={styles.resetButton}
+          title="Reset search"
+        >
+          ✕
         </button>
-      </div>
-    );
-  }
+      )}
+      <button onClick={handleSearch} className={styles.button}>
+        Search
+      </button>
+    </div>
+  );
 }
 
 export default Search;
