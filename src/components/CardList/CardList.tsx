@@ -62,6 +62,9 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
             { ...data, url: `https://pokeapi.co/api/v2/pokemon/${data.id}/` },
           ];
           setTotalPages(1);
+          if (pokemonId) {
+            setSearchParams({ page: currentPage.toString() });
+          }
         } else {
           const offset = (currentPage - 1) * itemsPerPage;
           const response = await fetch(
@@ -91,7 +94,7 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
     }
 
     fetchPokemon(searchTerm);
-  }, [searchTerm, currentPage]);
+  }, [searchTerm, currentPage, pokemonId, setSearchParams]);
 
   useEffect(() => {
     async function fetchPokemonDetails() {
@@ -131,6 +134,7 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
   };
 
   const handleCardClick = (pokemon: Pokemon) => {
+    if (searchTerm) return;
     const id = getPokemonId(pokemon);
     setSearchParams({ page: currentPage.toString(), pokemonId: id });
   };
