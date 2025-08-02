@@ -1,0 +1,32 @@
+.flyout {
+  background-color: #f8f8f8;
+  border-top: 1px solid #ccc;
+  padding: 5px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.listItem {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.clearButton {
+  background-color: #fd484a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: #ab0002;
+}

@@ -7,6 +7,7 @@
   margin: 0.5rem;
   max-width: 250px;
   text-align: center;
+  position: relative;
 }
 
 .image {
@@ -24,4 +25,10 @@
 
 .description {
   color: #4b5563;
+}
+
+.checkbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
 }

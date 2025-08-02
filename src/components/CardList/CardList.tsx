@@ -4,7 +4,9 @@ import Card from '../Card/Card';
 import Spinner from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
+import Flyout from '../Flyout/Flyout';
 import styles from './CardList.module.css';
+import { usePokemonStore } from '../../store/pokemonStore';
 
 interface PokemonSummary {
   name: string;
@@ -26,6 +28,7 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
   const { page } = useParams<{ page: string }>();
   const currentPage = parseInt(page || searchParams.get('page') || '1', 10);
   const pokemonId = searchParams.get('pokemonId');
+  const { selectedPokemons } = usePokemonStore();
   const itemsPerPage = 24;
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -92,7 +95,7 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
     }
 
     fetchPokemon(searchTerm);
-  }, [searchTerm, currentPage, pokemonId, setSearchParams]);
+  }, [searchTerm, currentPage]);
 
   const getPokemonId = (pokemon: Pokemon): string => {
     return pokemon.id.toString();
@@ -131,6 +134,7 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
               }`}
             >
               <Card
+                id={pokemon.id}
                 name={pokemon.name}
                 description={`Type: ${pokemon.types.map((t) => t.type.name).join(', ')}`}
                 imageUrl={pokemon.sprites.front_default}
@@ -147,12 +151,16 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
         totalPages={totalPages}
         onPageChange={(page) => {
           if (page >= 1 && page <= totalPages) {
-            setSearchParams({ page: page.toString() });
+            setSearchParams({
+              page: page.toString(),
+              ...(pokemonId && { pokemonId }),
+            });
           }
         }}
         isVisible={!searchTerm && pokemonList.length > 0}
       />
       <PokemonDetails pokemonId={pokemonId} onClose={handleCloseDetails} />
+      {selectedPokemons.length > 0 && <Flyout />}
     </div>
   );
 }

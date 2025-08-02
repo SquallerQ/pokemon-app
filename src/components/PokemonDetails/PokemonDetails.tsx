@@ -56,6 +56,10 @@ function PokemonDetails({
     fetchPokemonDetails();
   }, [pokemonId]);
 
+  if (!pokemonId) {
+    return <></>;
+  }
+
   if (isDetailsLoading) {
     return <div className={styles.spinner}>Loading...</div>;
   }
