@@ -8,14 +8,16 @@
 
 .error {
   padding: 1rem;
-  color: #dc2626;
+  color: var(--error-color);
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .noResults {
   padding: 1rem;
   text-align: center;
-  color: #4b5563;
+  color: var(--gray-medium);
+  transition: color 0.3s ease;
 }
 
 .container {
@@ -34,5 +36,6 @@
 }
 
 .cardWrapper.selected {
-  background-color: #007bff;
+  background-color: var(--button-bg);
+  transition: background-color 0.3s ease;
 }

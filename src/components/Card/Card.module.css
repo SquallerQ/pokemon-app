@@ -1,13 +1,14 @@
 .card {
   width: 160px;
   padding: 1rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--gray-medium);
   border-radius: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
   margin: 0.5rem;
   max-width: 250px;
   text-align: center;
   position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .image {
@@ -24,7 +25,8 @@
 }
 
 .description {
-  color: #4b5563;
+  color: var(--gray-medium);
+  transition: color 0.3s ease;
 }
 
 .checkbox {

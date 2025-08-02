@@ -7,15 +7,15 @@
 
 .pageButton {
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  border: 1px solid var(--gray-medium);
+  background-color: var(--gray-light);
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.3s ease;
 }
 
 .pageButton:hover:not(:disabled) {
-  background-color: #f0f0f0;
+  background-color: var(--gray-hover);
 }
 
 .pageButton:disabled {
@@ -24,12 +24,19 @@
 }
 
 .active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: #34d399;
+  color: var(--button-text);
+  border-color: var(--active-button-bg);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.active:hover {
+  background-color: #34d399;
+  cursor: auto;
 }
 
 .ellipsis {
   padding: 0.5rem 1rem;
-  color: #555;
+  color: var(--gray-medium);
+  transition: color 0.3s ease;
 }

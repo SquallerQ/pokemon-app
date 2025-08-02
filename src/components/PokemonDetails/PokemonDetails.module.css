@@ -4,10 +4,10 @@
   right: -155px;
   width: 200px;
   height: 450px;
-  background-color: #fff;
-  border-left: 1px solid #ccc;
+  border: 1px solid var(--gray-medium);
   padding: 1rem;
   overflow-y: auto;
+  transition: background-color 0.3s ease;
 }
 
 .closeButton {
@@ -17,13 +17,13 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #4b5563;
+  color: var(--text-color);
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .closeButton:hover {
-  color: #dc2626;
+  color: var(--error-color);
 }
 
 .detailsImage {
@@ -35,12 +35,13 @@
 
 .detailsInfo {
   text-align: left;
-  color: #4b5563;
+  color: var(--text-color);
 }
 
 .detailsInfo h3 {
   margin-top: 1rem;
-  color: #1f2937;
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 .detailsInfo p {

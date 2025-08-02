@@ -3,31 +3,33 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: var(--gray-light);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--gray-medium);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .title {
   font-size: 2rem;
-  color: #333;
+  color: #000;
   margin-bottom: 1rem;
 }
 
 .text {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--gray-medium);
   margin: 0.5rem 0;
+  transition: color 0.3s ease;
 }
 
 .link {
-  color: #007bff;
+  color: var(--button-bg);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.2s, text-decoration 0.2s;
 }
 
 .link:hover {
-  color: #0056b3;
+  color: var(--button-bg-hover);
   text-decoration: underline;
 }

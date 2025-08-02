@@ -5,6 +5,8 @@ import Search from './components/Search/Search';
 import About from './components/About/About';
 import NotFound from './components/NotFound/NotFound';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import { ThemeProvider } from './components/ThemeContext/ThemeContext';
+import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 import useLocalStorage from './hooks/useLocalStorage';
 import styles from './App.module.css';
 
@@ -29,36 +31,39 @@ function App(): JSX.Element {
 
   return (
     <BrowserRouter>
-      <div className={styles.container}>
-        <nav className={styles.nav}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-        <ErrorBoundary onReset={handleReset}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Search onSearch={handleSearch} />
-                  <MainContent searchTerm={searchTerm} />
-                </>
-              }
-            />
-            <Route
-              path="/page/:page"
-              element={
-                <>
-                  <Search onSearch={handleSearch} />
-                  <MainContent searchTerm={searchTerm} />
-                </>
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </ErrorBoundary>
-      </div>
+      <ThemeProvider>
+        <div className={styles.container}>
+          <nav className={styles.nav}>
+            <Link to="/">Home</Link>
+            <ThemeToggle />
+            <Link to="/about">About</Link>
+          </nav>
+          <ErrorBoundary onReset={handleReset}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Search onSearch={handleSearch} />
+                    <MainContent searchTerm={searchTerm} />
+                  </>
+                }
+              />
+              <Route
+                path="/page/:page"
+                element={
+                  <>
+                    <Search onSearch={handleSearch} />
+                    <MainContent searchTerm={searchTerm} />
+                  </>
+                }
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ErrorBoundary>
+        </div>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

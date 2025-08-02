@@ -1,3 +1,39 @@
 body {
-  background-color: #f9fafb;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+:root.light {
+  --background-color: rgba(255, 255, 255, 0.75);
+  --text-color: rgba(0, 0, 0, 0.8);
+  --button-bg-primary: #fd484a;
+  --button-bg-primary-hover: #ab0002;
+  --button-bg: #3b82f6;
+  --button-bg-hover: #2563eb;
+  --button-text: #fff;
+  --gray-light: #f9f9f9;
+  --gray-medium: #d1d5db;
+  --gray-hover: #9ca3af;
+  --error-color: #dc2626;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.dark {
+  --background-color: rgba(0, 0, 0, 0.75);
+  --text-color: rgba(255, 255, 255, 0.8);
+  --button-bg-primary: #ff7875;
+  --button-bg-primary-hover: #ff4d4f;
+  --button-bg: #60a5fa;
+  --button-bg-hover: #3b82f6;
+  --gray-light: #e2e8f0;
+  --gray-medium: #6b7280;
+  --gray-hover: #9ca3af;
+  --error-color: #ff6b6b;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
