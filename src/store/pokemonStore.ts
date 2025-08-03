@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface Pokemon {
+export interface Pokemon {
   id: number;
   name: string;
   url: string;

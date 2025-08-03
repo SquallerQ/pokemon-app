@@ -20,6 +20,11 @@
   margin-bottom: 4px;
 }
 
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
 .clearButton {
   margin-left: 15px;
   background-color: var(--button-bg-primary);
@@ -48,4 +53,11 @@
 
 .downloadButton:hover {
   background-color: var(--button-bg-hover);
+}
+
+.downloadLink {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
 }
