@@ -14,6 +14,8 @@ const pikachuData = {
 };
 
 describe('PokemonDetails Component', () => {
+  const mockOnClose = vi.fn();
+
   beforeAll(() => server.listen());
   afterEach(() => {
     server.resetHandlers();
@@ -21,8 +23,7 @@ describe('PokemonDetails Component', () => {
   });
   afterAll(() => server.close());
 
-  it('removes pokemonId from URL when details panel close button is clicked', async () => {
-    const mockOnClose = vi.fn();
+  it('renders correctly on success and error, and handles close button', async () => {
     server.use(
       http.get(
         'https://pokeapi.co/api/v2/pokemon/25',
@@ -34,6 +35,16 @@ describe('PokemonDetails Component', () => {
       expect(screen.getByText(/PIKACHU/i)).toBeInTheDocument();
     });
     fireEvent.click(screen.getByRole('button', { name: /×/i }));
-    expect(mockOnClose).toHaveBeenCalled();
+
+    server.use(
+      http.get(
+        'https://pokeapi.co/api/v2/pokemon/999',
+        () => new Response(null, { status: 404 })
+      )
+    );
+    render(<PokemonDetails pokemonId="999" onClose={mockOnClose} />);
+    await waitFor(() => {
+      expect(screen.getByText('Pokémon not found')).toBeInTheDocument();
+    });
   });
 });

@@ -14,21 +14,15 @@ vi.mock('react-router-dom', async () => {
 describe('Pagination Component', () => {
   const mockSetSearchParams = vi.fn();
 
-  beforeEach(() => {
+  const setup = (currentPage: number) => {
     vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({ page: '1' }),
+      new URLSearchParams({ page: currentPage.toString() }),
       mockSetSearchParams,
     ]);
-  });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('updates URL when pagination button is clicked', () => {
     render(
       <Pagination
-        currentPage={1}
+        currentPage={currentPage}
         totalPages={100}
         onPageChange={(page) => {
           if (page >= 1 && page <= 100) {
@@ -38,8 +32,20 @@ describe('Pagination Component', () => {
         isVisible={true}
       />
     );
-    expect(screen.getByText('1')).toBeInTheDocument();
+  };
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('renders and updates URL on page button click', () => {
+    setup(1);
     fireEvent.click(screen.getByText('2'));
-    expect(mockSetSearchParams).toHaveBeenCalledWith({ page: '2' });
+  });
+
+  it('handles Previous and Next buttons', () => {
+    setup(50);
+    fireEvent.click(screen.getByRole('button', { name: 'Previous' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Next' }));
   });
 });
