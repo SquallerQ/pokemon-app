@@ -60,8 +60,8 @@ export const usePokemonList = (
             totalCount: 1,
           }))
         : fetchPokemonList(page, itemsPerPage),
-    staleTime: 5 * 60 * 1000,
-    gcTime: 10 * 60 * 1000,
+    staleTime: 0,
+    gcTime: 0,
     networkMode: 'always',
   });
 };

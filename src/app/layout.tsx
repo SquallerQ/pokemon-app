@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 import '../index.css';
-import '../App.module.css';
+// import '../App.module.css';
 import { ThemeProvider } from '../components/ThemeContext/ThemeContext';
 
 import Nav from '../components/Nav/Nav';

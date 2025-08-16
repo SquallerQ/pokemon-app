@@ -1,4 +1,7 @@
+'use client';
+
 import React, { JSX } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './Pagination.module.css';
 
 interface PaginationProps {
@@ -14,6 +17,8 @@ function Pagination({
   onPageChange,
   isVisible,
 }: PaginationProps): JSX.Element {
+  const router = useRouter();
+
   const getPageNumbers = () => {
     if (totalPages <= 11) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -44,6 +49,13 @@ function Pagination({
     ];
   };
 
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      router.push(`/page/${page}`);
+      onPageChange(page);
+    }
+  };
+
   if (!isVisible) {
     return <></>;
   }
@@ -51,7 +63,7 @@ function Pagination({
   return (
     <div className={styles.pagination}>
       <button
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={styles.pageButton}
       >
@@ -65,7 +77,7 @@ function Pagination({
         ) : (
           <button
             key={pageNum}
-            onClick={() => onPageChange(pageNum as number)}
+            onClick={() => handlePageChange(pageNum as number)}
             className={`${styles.pageButton} ${pageNum === currentPage ? styles.active : ''}`}
           >
             {pageNum}
@@ -73,7 +85,7 @@ function Pagination({
         )
       )}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={styles.pageButton}
       >
