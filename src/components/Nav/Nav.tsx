@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
-import Link from 'next/link';
+import { Link } from '../../i18n/navigation';
 import { useTranslations } from 'next-intl';
 import styles from './Nav.module.css';
 

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { JSX } from 'react';
-import { useSearchParams, useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useSearchParams, useParams } from 'next/navigation';
+import { useRouter } from '../../i18n/navigation';
 import Card from '../Card/Card';
 import Spinner from '../Spinner/Spinner';
 import Pagination from '../Pagination/Pagination';
@@ -49,12 +50,11 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
 
   const handleCardClick = (pokemon: Pokemon) => {
     if (searchTerm) return;
-    router.push(`
-      /${params.locale || 'en'}/page/${currentPage}?pokemonId=${pokemon.id}`);
+    router.push(`/page/${currentPage}?pokemonId=${pokemon.id}`);
   };
 
   const handleCloseDetails = () => {
-    router.push(`/${params.locale || 'en'}/page/${currentPage}`);
+    router.push(`/page/${currentPage}`);
   };
 
   const handleRefresh = async () => {

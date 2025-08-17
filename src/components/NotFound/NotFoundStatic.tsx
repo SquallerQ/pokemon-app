@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import Link from 'next/link';
+import { Link } from '../../i18n/navigation';
 import styles from './NotFound.module.css';
 
 function NotFoundStatic(): JSX.Element {
@@ -8,7 +8,7 @@ function NotFoundStatic(): JSX.Element {
       <h1>404 - Page Not Found</h1>
       <p>The page you are looking for does not exist.</p>
       <div className={styles.homeOnly}>
-        <Link href="/en" className={styles.homeLink}>
+        <Link href="/" className={styles.homeLink}>
           🏠 Go to Home
         </Link>
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { JSX } from 'react';
-import Link from 'next/link';
+import { Link } from '../../i18n/navigation';
 import { useTranslations } from 'next-intl';
 import styles from './NotFound.module.css';
 
