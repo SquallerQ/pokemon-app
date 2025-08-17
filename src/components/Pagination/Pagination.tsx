@@ -1,7 +1,7 @@
 'use client';
 
 import React, { JSX } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import styles from './Pagination.module.css';
 
 interface PaginationProps {
@@ -18,6 +18,7 @@ function Pagination({
   isVisible,
 }: PaginationProps): JSX.Element {
   const router = useRouter();
+  const params = useParams();
 
   const getPageNumbers = () => {
     if (totalPages <= 11) {
@@ -51,7 +52,7 @@ function Pagination({
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      router.push(`/page/${page}`);
+      router.push(`/${params.locale || 'en'}/page/${page}`);
       onPageChange(page);
     }
   };

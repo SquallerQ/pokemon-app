@@ -29,7 +29,7 @@ interface CardListProps {
 
 function CardList({ searchTerm }: CardListProps): JSX.Element {
   const searchParams = useSearchParams();
-  const params = useParams<{ page?: string }>();
+  const params = useParams<{ page?: string; locale?: string }>();
   const router = useRouter();
   const currentPage = parseInt(params.page || '1', 10);
   const pokemonId = searchTerm ? null : searchParams.get('pokemonId');
@@ -47,11 +47,12 @@ function CardList({ searchTerm }: CardListProps): JSX.Element {
 
   const handleCardClick = (pokemon: Pokemon) => {
     if (searchTerm) return;
-    router.push(`/page/${currentPage}?pokemonId=${pokemon.id}`);
+    router.push(`
+      /${params.locale || 'en'}/page/${currentPage}?pokemonId=${pokemon.id}`);
   };
 
   const handleCloseDetails = () => {
-    router.push(`/page/${currentPage}`);
+    router.push(`/${params.locale || 'en'}/page/${currentPage}`);
   };
 
   const handleRefresh = async () => {

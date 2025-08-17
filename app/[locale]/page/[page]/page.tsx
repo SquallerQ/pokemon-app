@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import CardList from '../../../components/CardList/CardList';
-import Search from '../../../components/Search/Search';
-import ErrorBoundary from '../../../components/ErrorBoundary/ErrorBoundary';
-import { ThemeProvider } from '../../../components/ThemeContext/ThemeContext';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import CardList from '../../../../src/components/CardList/CardList';
+import Search from '../../../../src/components/Search/Search';
+import ErrorBoundary from '../../../../src/components/ErrorBoundary/ErrorBoundary';
+import { ThemeProvider } from '../../../../src/components/ThemeContext/ThemeContext';
+import useLocalStorage from '../../../../src/hooks/useLocalStorage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function MainContent({ searchTerm }: { searchTerm: string }) {

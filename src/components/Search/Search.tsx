@@ -1,5 +1,6 @@
 import React, { JSX } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useTranslations } from 'next-intl';
 import styles from './Search.module.css';
 
 interface SearchProps {
@@ -7,6 +8,7 @@ interface SearchProps {
 }
 
 function Search({ onSearch }: SearchProps): JSX.Element {
+  const t = useTranslations('Search');
   const [inputValue, setInputValue] = useLocalStorage('searchTerm', '');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,19 +33,19 @@ function Search({ onSearch }: SearchProps): JSX.Element {
         value={inputValue}
         onChange={handleInputChange}
         className={styles.input}
-        placeholder="Search Pokémon..."
+        placeholder={t('placeholder')}
       />
       {inputValue && (
         <button
           onClick={handleReset}
           className={styles.resetButton}
-          title="Reset search"
+          title={t('resetTitle')}
         >
           ✕
         </button>
       )}
       <button onClick={handleSearch} className={styles.button}>
-        Search
+        {t('searchButton')}
       </button>
     </div>
   );
