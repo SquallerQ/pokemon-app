@@ -1,0 +1,35 @@
+.languageSwitcher {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray-medium);
+  border-radius: 6px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--button-bg-hover);
+  border-color: var(--gray-hover);
+  transform: translateY(-1px);
+}
+
+.active {
+  background-color: var(--button-bg-primary);
+  border-color: var(--button-bg-primary-hover);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}

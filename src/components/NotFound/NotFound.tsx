@@ -12,7 +12,9 @@ function NotFound(): JSX.Element {
     <div className={styles.container}>
       <h1>{t('title')}</h1>
       <p>{t('message')}</p>
-      <Link href="/">{t('homeLink')}</Link>
+      <Link href="/" className={styles.homeLink}>
+        {t('homeLink')}
+      </Link>
     </div>
   );
 }
