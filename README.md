@@ -44,3 +44,7 @@ This project was developed step-by-step, with each stage in a separate branch:
 3. Install dependencies: `npm install`
 4. Start development server: `npm run dev`
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📚 Related
+
+This project is part of the Rolling Scopes School React course. Additional assignments (forms, optimization) can be found in the [react-rss-projects](https://github.com/SquallerQ/react-rss-projects) repository.
